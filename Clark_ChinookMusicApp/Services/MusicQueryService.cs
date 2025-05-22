@@ -20,62 +20,59 @@ public class MusicQueryService
     }
 
     // #1
-    public async Task<List<string>> GetAllArtistsWithAlbums()
+    public async Task<List<Artist>> GetAllArtistsWithAlbums()
     {
         // SELECT Artist.Albums
         // FROM Artist
         return await _context.Artists
             .Include(artist => artist.Albums)
-                .ThenInclude(album => album.Title)
-            .Select(artist => artist.Name)
+            // .Select(artist => artist)
             .ToListAsync();
     }
 
     // #2
-    public async Task<List<string>> GetAllArtistsWithMoreThanOneAlbum()
+    public async Task<List<Artist>> GetAllArtistsWithMoreThanOneAlbum()
     {
         return await _context.Artists
             .Where(artist => artist.Albums.Count > 1)
-            .Select(artist => artist.Name)
+            // .Select(artist => artist)
             .ToListAsync();
     }
 
     // #3
-    public async Task<List<string>> GetArtistByNameWithAlbums(string artistName)
+    public async Task<Artist?> GetArtistByNameWithAlbums(string artistName)
     {
         return await _context.Artists
             .Where(artist => artist.Name == artistName)
             .Include(artist => artist.Albums)
-                .ThenInclude(album => album.Title)
-            .Select(artist => artist.Name)
-            .ToListAsync();
+            // .Select(artist => artist)
+            .SingleOrDefaultAsync();
     }
 
     // #4
-    public async Task<List<string>> GetTracksByAlbumId(int albumId)
+    public async Task<List<Track>> GetTracksByAlbumId(int albumId)
     {
         return await _context.Tracks
             .Where(track => track.Album.AlbumId == albumId)
-            .Select(track => track.Name)
+            // .Select(track => track)
             .ToListAsync();
     }
 
     // #5
-    public async Task<List<string>> GetAllGenresWithTracks()
+    public async Task<List<Genre>> GetAllGenresWithTracks()
     {
         return await _context.Genres
             .Include(genre => genre.Tracks)
-                .ThenInclude(track => track.Name)
-            .Select(genre => genre.Name)
+            // .Select(genre => genre)
             .ToListAsync();
     }
 
     // #6
-    public async Task<List<string>> GetTracksByGenreId(int genreId)
+    public async Task<List<Track>> GetTracksByGenreId(int genreId)
     {
         return await _context.Tracks
             .Where(track => track.GenreId == genreId)
-            .Select(track => track.Name)
+            // .Select(track => track)
             .ToListAsync();
     }
 
@@ -92,21 +89,21 @@ public class MusicQueryService
     }
 
     // #8
-    public async Task<List<string>> GetAlbumsByArtistId(int artistId)
+    public async Task<List<Album>> GetAlbumsByArtistId(int artistId)
     {
         return await _context.Albums
             .Where(album => album.ArtistId == artistId)
-            .Select(album => album.Title)
+            // .Select(album => album)
             .ToListAsync();
     }
 
     // #9
-    public async Task<List<string>> GetAllPlaylistsWithTracks()
+    public async Task<List<Playlist>> GetAllPlaylistsWithTracks()
     {
         return await _context.Playlists
             .Include(playlist => playlist.Tracks)
                 .ThenInclude(track => track.Name)
-            .Select(playlist => playlist.Name)
+            // .Select(playlist => playlist)
             .ToListAsync();
     }
 
@@ -124,21 +121,21 @@ public class MusicQueryService
     // }
 
     // #11
-    public async Task<List<string>> GetArtistsWithoutAlbums()
+    public async Task<List<Artist>> GetArtistsWithoutAlbums()
     {
         return await _context.Artists
             .Where(artist => artist.Albums.Count == 0)
-            .Select(artist => artist.Name)
+            // .Select(artist => artist)
             .ToListAsync();
     }
 
     // #12
-    public async Task<List<string>> GetTracksWithGenreAndAlbums()
+    public async Task<List<Track>> GetTracksWithGenreAndAlbum()
     {
         return await _context.Tracks
             .Include(track => track.Genre)
             .Include(track => track.Album)
-            .Select(track => track.Name)
+            // .Select(track => track)
             .ToListAsync();
     }
 

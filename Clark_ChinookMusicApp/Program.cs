@@ -3,20 +3,20 @@ using Clark_ChinookMusicApp.Services;
 using Clark_ChinookMusicApp.Data;
 
 ServiceProvider _serviceProvider;
-SeedingService _seedingService;
+// SeedingService _seedingService;
 MusicQueryService _musicQueryService;
 
 var services = new ServiceCollection();
 
 services.AddDbContext<ApplicationDbContext>();
-services.AddScoped<SeedingService>();
+// services.AddScoped<SeedingService>();
 services.AddScoped<MusicQueryService>();
 
 _serviceProvider = services.BuildServiceProvider();
-_seedingService = _serviceProvider.GetRequiredService<SeedingService>();
+// _seedingService = _serviceProvider.GetRequiredService<SeedingService>();
 _musicQueryService = _serviceProvider.GetRequiredService<MusicQueryService>();
 
-await _seedingService.SeedDatabase();
+// await _seedingService.SeedDatabase();
 
 
 
@@ -74,11 +74,11 @@ foreach (var playlist in playlistsWithTracks) {
     Console.WriteLine($"{playlist.Name} ({playlist.Tracks.Count} tracks)");
 }
 
-// Console.WriteLine("\n--- GetAverageDurationByGenre ---");
-// var avgDurationByGenre = await _musicQueryService.GetAverageDurationByGenre();
-// foreach (var stat in avgDurationByGenre) {
-//     Console.WriteLine($"{stat.Label}: {stat.Value} {stat.ValueMetric}");
-// }
+Console.WriteLine("\n--- GetAverageDurationByGenre ---");
+var avgDurationByGenre = await _musicQueryService.GetAverageDurationByGenre();
+foreach (var stat in avgDurationByGenre) {
+    Console.WriteLine($"{stat.Label}: {stat.Value} {stat.ValueMetric}");
+}
 
 Console.WriteLine("\n--- GetArtistsWithoutAlbums ---");
 var artistsWithoutAlbums = await _musicQueryService.GetArtistsWithoutAlbums();
@@ -116,11 +116,11 @@ foreach (var stat in playlistStats) {
     Console.WriteLine($"{stat.Label}: {stat.Value}");
 }
 
-// Console.WriteLine("\n--- GetTracksByPlaylistId (PlaylistId = 1) ---");
-// var tracksInPlaylist = await _musicQueryService.GetTracksByPlaylistId(1);
-// foreach (var track in tracksInPlaylist) {
-//     Console.WriteLine(track.Name);
-// }
+Console.WriteLine("\n--- GetTracksByPlaylistId (PlaylistId = 1) ---");
+var tracksInPlaylist = await _musicQueryService.GetTracksByPlaylistId(1);
+foreach (var track in tracksInPlaylist) {
+    Console.WriteLine(track.Name);
+}
 
 Console.WriteLine("\n--- GetPlaylistWithMostTracks ---");
 var mostTracksPlaylist = await _musicQueryService.GetPlaylistWithMostTracks();

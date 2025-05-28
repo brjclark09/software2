@@ -3111,24 +3111,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\brjcl\\.nuget\\packages\\": {}
+    "C:\\Users\\w3031836\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookMusicApp\\Clark_ChinookMusicApp.csproj",
+      "projectUniqueName": "C:\\Users\\w3031836\\Documents\\GitHub\\software2\\Clark_ChinookMusicApp\\Clark_ChinookMusicApp.csproj",
       "projectName": "Clark_ChinookMusicApp",
-      "projectPath": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookMusicApp\\Clark_ChinookMusicApp.csproj",
-      "packagesPath": "C:\\Users\\brjcl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookMusicApp\\obj\\",
+      "projectPath": "C:\\Users\\w3031836\\Documents\\GitHub\\software2\\Clark_ChinookMusicApp\\Clark_ChinookMusicApp.csproj",
+      "packagesPath": "C:\\Users\\w3031836\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\w3031836\\Documents\\GitHub\\software2\\Clark_ChinookMusicApp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\brjcl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\w3031836\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3147,7 +3154,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -3186,7 +3193,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

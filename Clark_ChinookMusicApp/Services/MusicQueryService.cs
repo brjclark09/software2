@@ -24,7 +24,8 @@ public class MusicQueryService
     {
         // SELECT Artist.Albums
         // FROM Artist
-        return await _context.Artists
+        return await _context.Artist
+            .Where(artist => artist.Albums.Count > 0)
             .Include(artist => artist.Albums)
             // .Select(artist => artist)
             .ToListAsync();
@@ -33,7 +34,7 @@ public class MusicQueryService
     // #2
     public async Task<List<Artist>> GetAllArtistsWithMoreThanOneAlbum()
     {
-        return await _context.Artists
+        return await _context.Artist
             .Where(artist => artist.Albums.Count > 1)
             // .Select(artist => artist)
             .ToListAsync();
@@ -42,7 +43,7 @@ public class MusicQueryService
     // #3
     public async Task<Artist?> GetArtistByNameWithAlbums(string artistName)
     {
-        return await _context.Artists
+        return await _context.Artist
             .Where(artist => artist.Name == artistName)
             .Include(artist => artist.Albums)
             // .Select(artist => artist)
@@ -52,7 +53,7 @@ public class MusicQueryService
     // #4
     public async Task<List<Track>> GetTracksByAlbumId(int albumId)
     {
-        return await _context.Tracks
+        return await _context.Track
             .Where(track => track.Album.AlbumId == albumId)
             // .Select(track => track)
             .ToListAsync();
@@ -61,7 +62,7 @@ public class MusicQueryService
     // #5
     public async Task<List<Genre>> GetAllGenresWithTracks()
     {
-        return await _context.Genres
+        return await _context.Genre
             .Include(genre => genre.Tracks)
             // .Select(genre => genre)
             .ToListAsync();
@@ -70,7 +71,7 @@ public class MusicQueryService
     // #6
     public async Task<List<Track>> GetTracksByGenreId(int genreId)
     {
-        return await _context.Tracks
+        return await _context.Track
             .Where(track => track.GenreId == genreId)
             // .Select(track => track)
             .ToListAsync();
@@ -79,7 +80,7 @@ public class MusicQueryService
     // #7
     public async Task<List<Statistic>> GetTotalTracksByAlbum()
     {
-        return await _context.Albums
+        return await _context.Album
             .Select(album => new Statistic
             {
                 Label = album.Title,
@@ -91,7 +92,7 @@ public class MusicQueryService
     // #8
     public async Task<List<Album>> GetAlbumsByArtistId(int artistId)
     {
-        return await _context.Albums
+        return await _context.Album
             .Where(album => album.ArtistId == artistId)
             // .Select(album => album)
             .ToListAsync();
@@ -100,30 +101,29 @@ public class MusicQueryService
     // #9
     public async Task<List<Playlist>> GetAllPlaylistsWithTracks()
     {
-        return await _context.Playlists
+        return await _context.Playlist
             .Include(playlist => playlist.Tracks)
-                .ThenInclude(track => track.Name)
             // .Select(playlist => playlist)
             .ToListAsync();
     }
 
     // #10
-    // public async Task<List<Statistic>> GetAverageDurationByGenre()
-    // {
-    //     return await _context.Genres
-    //         .Select(genre => new Statistic
-    //         {
-    //             Label = genre.Name,
-    //             Value = genre.Tracks.Average(track => track.Milliseconds) / 1000,
-    //             ValueMetric = "Seconds"
-    //         })
-    //         .ToListAsync();
-    // }
+    public async Task<List<Statistic>> GetAverageDurationByGenre()
+    {
+        return await _context.Genre
+            .Select(genre => new Statistic
+            {
+                Label = genre.Name,
+                Value = (decimal) genre.Tracks.Average(track => track.Milliseconds) / 1000,
+                ValueMetric = "Seconds"
+            })
+            .ToListAsync();
+    }
 
     // #11
     public async Task<List<Artist>> GetArtistsWithoutAlbums()
     {
-        return await _context.Artists
+        return await _context.Artist
             .Where(artist => artist.Albums.Count == 0)
             // .Select(artist => artist)
             .ToListAsync();
@@ -132,7 +132,7 @@ public class MusicQueryService
     // #12
     public async Task<List<Track>> GetTracksWithGenreAndAlbum()
     {
-        return await _context.Tracks
+        return await _context.Track
             .Include(track => track.Genre)
             .Include(track => track.Album)
             // .Select(track => track)
@@ -142,12 +142,12 @@ public class MusicQueryService
     // #13
     public async Task<List<TrackDetails>> GetTrackDetails()
     {
-        return await _context.Tracks
+        return await _context.Track
             .Select(track => new TrackDetails
             {
                 Track = track.Name,
                 Album = track.Album.Title,
-                Artist = track.Composer
+                Artist = track.Album.Artist.Name
             })
             .ToListAsync();
     }
@@ -155,7 +155,7 @@ public class MusicQueryService
     // #14
     public async Task<List<Statistic>> GetAlbumsWithTrackDuration()
     {
-        return await _context.Albums
+        return await _context.Album
             .Select(album => new Statistic
             {
                 Label = album.Title,
@@ -168,7 +168,7 @@ public class MusicQueryService
     // #15
     public async Task<List<Statistic>> GetGenreTrackCounts()
     {
-        return await _context.Genres
+        return await _context.Genre
             .Select(genre => new Statistic
             {
                 Label = genre.Name,
@@ -181,7 +181,7 @@ public class MusicQueryService
     // #16
     public async Task<List<Statistic>> GetPlaylistsWithTrackCount()
     {
-        return await _context.Playlists
+        return await _context.Playlist
             .Select(playlist => new Statistic
             {
                 Label = playlist.Name,
@@ -192,18 +192,18 @@ public class MusicQueryService
     }
 
     // #17
-    // public async Task<List<Track>> GetTracksByPlaylistId(int playlistId)
-    // {
-    //     return await _context.Playlists
-    //         .Where(playlist => playlist.PlaylistId == playlistId)
-    //         .Select(playlist => playlist.Tracks)
-    //         .ToListAsync();
-    // }
+    public async Task<List<Track>> GetTracksByPlaylistId(int playlistId)
+    {
+        return await _context.Playlist
+            .Where(playlist => playlist.PlaylistId == playlistId)
+            .SelectMany(playlist => playlist.Tracks)
+            .ToListAsync();
+    }
 
     // #18
     public async Task<Playlist?> GetPlaylistWithMostTracks()
     {
-        return await _context.Playlists
+        return await _context.Playlist
             .OrderByDescending(playlist => playlist.Tracks.Count)
             .FirstOrDefaultAsync();
     }
@@ -211,7 +211,7 @@ public class MusicQueryService
     // #19
     public async Task<Playlist?> GetPlaylistWithLeastTracks()
     {
-        return await _context.Playlists
+        return await _context.Playlist
             .OrderBy(playlist => playlist.Tracks.Count)
             .FirstOrDefaultAsync();
     }
@@ -219,7 +219,7 @@ public class MusicQueryService
     // #20
     public async Task<List<Statistic>> GetTopFivePlaylistsWithMostTracks()
     {
-        return await _context.Playlists
+        return await _context.Playlist
             .OrderByDescending(playlist => playlist.Tracks.Count)
             .Take(5)
             .Select(playlist => new Statistic
@@ -233,7 +233,7 @@ public class MusicQueryService
     // #21
     public async Task<List<Statistic>> GetBottomFivePlaylistsWithLeastTracks()
     {
-        return await _context.Playlists
+        return await _context.Playlist
             .OrderBy(playlist => playlist.Tracks.Count)
             .Take(5)
             .Select(playlist => new Statistic

@@ -1,0 +1,115 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Clark_ChinookMusicApp.Data;
+using Clark_ChinookMusicApp.Models;
+using Clark_ChinookMusicApp.Models.Entities;
+
+namespace Clark_ChinookMusicApp.Services;
+
+public class SeedingService
+{
+    private readonly ApplicationDbContext _context;
+    public SeedingService(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    public void CreateAlbum(string title) {
+        var album = new Album {
+            Title = title,
+        };
+        _context.Albums.Add(album);
+    }
+
+    public void CreateArtist(string name) {
+        var artist = new Artist {
+            Name = name,
+        };
+        _context.Artists.Add(artist);
+    }
+
+    public void CreateCustomer(string firstName, string lastName, string company, string address, string city, string state, string country, string postalCode, string phone, string fax, string email) {
+        var customer = new Customer {
+            FirstName = firstName,
+            LastName = lastName,
+            Company = company,
+            Address = address,
+            City = city,
+            State = state,
+            Country = country,
+            PostalCode = postalCode,
+            Phone = phone,
+            Fax = fax,
+            Email = email,
+        };
+        _context.Customers.Add(customer);
+    }
+
+    public void CreateEmployee(string firstName, string lastName, string title, int reportsTo, DateTime birthDate, DateTime hireDate, string address, string city, string state, string country, string postalCode, string phone, string fax, string email) {
+        var employee = new Employee {
+            FirstName = firstName,
+            LastName = lastName,
+            Title = title,
+            ReportsTo = reportsTo,
+            BirthDate = birthDate,
+            HireDate = hireDate,
+            Address = address,
+            City = city,
+            State = state,
+            Country = country,
+            PostalCode = postalCode,
+            Phone = phone,
+            Fax = fax,
+            Email = email,
+        };
+        _context.Employees.Add(employee);
+    }
+
+    public void CreateGenre(string name) {
+        var genre = new Genre {
+            Name = name,
+        };
+        _context.Genres.Add(genre);
+    }
+
+    public void CreateInvoice(int invoiceId, int customerId, DateTime invoiceDate, string billingAddress, string billingCity, string billingState, string billingCountry, string billingPostalCode, decimal total) {
+        var invoice = new Invoice {
+            InvoiceId = invoiceId,
+            CustomerId = customerId,
+            InvoiceDate = invoiceDate,
+            BillingAddress = billingAddress,
+            BillingCity = billingCity,
+            BillingState = billingState,
+            BillingCountry = billingCountry,
+            BillingPostalCode = billingPostalCode,
+            Total = total,
+        };
+        _context.Invoices.Add(invoice);
+    }
+
+    public void CreatePlaylist(int playlistId, string name) {
+        var playlist = new Playlist {
+            PlaylistId = playlistId,
+            Name = name,
+        };
+        _context.Playlists.Add(playlist);
+    }
+
+    public void CreateTrack(int trackId, string name, int albumId, int mediaTypeId, int genreId, string composer, int miliseconds, int bytes, decimal unitPrice) {
+        var track = new Track {
+            TrackId = trackId,
+            Name = name,
+            AlbumId = albumId,
+            MediaTypeId = mediaTypeId,
+            GenreId = genreId,
+            Composer = composer,
+            Milliseconds = miliseconds,
+            Bytes = bytes,
+            UnitPrice = unitPrice,
+        };
+        _context.Tracks.Add(track);
+    }
+}

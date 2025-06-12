@@ -3117,9 +3117,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookEnhancedQueries\\Clark_ChinookMusicApp.csproj",
-      "projectName": "Clark_ChinookMusicApp",
-      "projectPath": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookEnhancedQueries\\Clark_ChinookMusicApp.csproj",
+      "projectUniqueName": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookEnhancedQueries\\Clark_ChinookEnhancedQueries.csproj",
+      "projectName": "Clark_ChinookEnhancedQueries",
+      "projectPath": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookEnhancedQueries\\Clark_ChinookEnhancedQueries.csproj",
       "packagesPath": "C:\\Users\\brjcl\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookEnhancedQueries\\obj\\",
       "projectStyle": "PackageReference",
@@ -3194,7 +3194,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

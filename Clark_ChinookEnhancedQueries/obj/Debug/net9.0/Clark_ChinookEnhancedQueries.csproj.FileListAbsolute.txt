@@ -1,0 +1,6 @@
+C:\Users\brjcl\Documents\GitHub\software2\Clark_ChinookEnhancedQueries\obj\Debug\net9.0\Clark_ChinookEnhancedQueries.csproj.AssemblyReference.cache
+C:\Users\brjcl\Documents\GitHub\software2\Clark_ChinookEnhancedQueries\obj\Debug\net9.0\Clark_ChinookEnhancedQueries.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\brjcl\Documents\GitHub\software2\Clark_ChinookEnhancedQueries\obj\Debug\net9.0\Clark_ChinookEnhancedQueries.AssemblyInfoInputs.cache
+C:\Users\brjcl\Documents\GitHub\software2\Clark_ChinookEnhancedQueries\obj\Debug\net9.0\Clark_ChinookEnhancedQueries.AssemblyInfo.cs
+C:\Users\brjcl\Documents\GitHub\software2\Clark_ChinookEnhancedQueries\obj\Debug\net9.0\Clark_ChinookEnhancedQueries.csproj.CoreCompileInputs.cache
+C:\Users\brjcl\Documents\GitHub\software2\Clark_ChinookEnhancedQueries\obj\Debug\net9.0\Clark_ChinookEnhancedQueries.sourcelink.json

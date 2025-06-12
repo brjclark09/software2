@@ -3,7 +3,7 @@ using Clark_ChinookEnhancedQueries.Services;
 using Clark_ChinookEnhancedQueries.Data;
 
 ServiceProvider _serviceProvider;
-EnhancedQueryService _enhancedQueryService;
+EnhancedQueryService _queryService;
 
 var services = new ServiceCollection();
 
@@ -11,7 +11,7 @@ services.AddDbContext<ApplicationDbContext>();
 services.AddScoped<EnhancedQueryService>();
 
 _serviceProvider = services.BuildServiceProvider();
-_enhancedQueryService = _serviceProvider.GetRequiredService<EnhancedQueryService>();
+_queryService = _serviceProvider.GetRequiredService<EnhancedQueryService>();
 
 
 

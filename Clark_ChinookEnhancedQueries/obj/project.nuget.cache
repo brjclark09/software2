@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dYHf+buAAEc=",
+  "dgSpecHash": "ajAkzNRIYro=",
   "success": true,
-  "projectFilePath": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookEnhancedQueries\\Clark_ChinookMusicApp.csproj",
+  "projectFilePath": "C:\\Users\\brjcl\\Documents\\GitHub\\software2\\Clark_ChinookEnhancedQueries\\Clark_ChinookEnhancedQueries.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\brjcl\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\brjcl\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

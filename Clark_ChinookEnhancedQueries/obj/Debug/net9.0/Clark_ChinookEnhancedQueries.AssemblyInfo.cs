@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Clark_ChinookEnhancedQueries")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+473d16ad4dd230ac76c0327f5bf55d9399bb29f1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65c667d84a801c7eea081d13aad5a485cbd2a940")]
 [assembly: System.Reflection.AssemblyProductAttribute("Clark_ChinookEnhancedQueries")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Clark_ChinookEnhancedQueries")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

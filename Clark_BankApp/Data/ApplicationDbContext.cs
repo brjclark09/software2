@@ -11,21 +11,32 @@ namespace Clark_BankApp.Data
         public DbSet<CreditCard> CreditCard { get; set; }
         public DbSet<Customer> Customer { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlite("Data Source=music.db");
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlite("Data Source=info.db");
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<Playlist>()
-            .HasMany(p => p.Tracks)
-            .WithMany(t => t.Playlists)
-            .UsingEntity<Dictionary<string, object>>(
-                "PlaylistTrack",
-                right => right.HasOne<Track>().WithMany().HasForeignKey("TrackId"),
-                left => left.HasOne<Playlist>().WithMany().HasForeignKey("PlaylistId"),
-                join => {
-                    join.HasKey("PlaylistId", "TrackId");
-                    join.Property<int>("PlaylistId");
-                    join.Property<int>("TrackId");
-                });
-
+            modelBuilder.Entity<Customer>()
+                .HasOne<Account>()
+                .WithOne()
+                .IsRequired()
+                .UsingEntity<CustomerAccount>(
+                    l => l.HasOne<Customer>()
+                        .WithOne()
+                        .HasForeignKey(ca => ca.CustId),
+                    r => r.HasOne<Account>()
+                        .WithOne()
+                        .HasForeignKey(ca => ca.AccountId)
+                );
+            modelBuilder.Entity<Customer>()
+                .HasOne<CreditCard>()
+                .WithOne()
+                .IsRequired()
+                .UsingEntity<CustomerCreditCard>(
+                    l => l.HasOne<Customer>()
+                        .WithOne()
+                        .HasForeignKey(cc => cc.CustId),
+                    r => r.HasOne<Account>()
+                        .WithOne()
+                        .HasForeignKey(cc => cc.CardId)
+                );
         }
     }
 }

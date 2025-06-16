@@ -1,4 +1,20 @@
-﻿var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
+﻿using Microsoft.Extensions.DependencyInjection;
+using Clark_BankApp.Services;
+using Clark_BankApp.Data;
+using System.Text.Json;
+
+ServiceProvider _serviceProvider;
+BankQueryService _bankQueryService;
+
+var services = new ServiceCollection();
+
+services.AddDbContext<ApplicationDbContext>();
+services.AddScoped<BankQueryService>();
+
+_serviceProvider = services.BuildServiceProvider();
+_bankQueryService = _serviceProvider.GetRequiredService<BankQueryService>();
+
+var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
 
 Console.WriteLine("\n--- 1) CustomerSummariesAsync ---");
 var customerSummaries = await _bankQueryService.CustomerSummariesAsync();

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Clark_BankApp.Models.Entities
 {
@@ -19,5 +21,7 @@ namespace Clark_BankApp.Models.Entities
     public string PostalCode { get; set; }
     public DateTime DateJoined { get; set; }
     public int CreditScore { get; set; }
+    public ICollection<CreditCard> CreditCards { get; set; } = new List<CreditCard>();
+    public ICollection<Account> Accounts { get; set; } = new List<Account>();
     }
 }

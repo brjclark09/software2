@@ -92,7 +92,7 @@ public class EnhancedQueryService : IEnhancedQuery
     public async Task<List<ComposerStatDto>> ComposersAndTracks()
     {
         var result = await _context.Track
-            .GroupBy(track => track.Composer)
+            .GroupBy(track => track.Composer ?? "Unknown Composer")
             .Select(track => new ComposerStatDto
             {
                 Name = track.Key,
@@ -112,7 +112,7 @@ public class EnhancedQueryService : IEnhancedQuery
         return result;
     }
 
-// 8                                                                                                                 asdf
+// 8
     /// Retrieves tracks longer than a given duration in seconds.
     public async Task<List<Track>> GetTracksLongerThanAsync(int seconds) 
     {
